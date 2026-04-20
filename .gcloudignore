@@ -1,0 +1,8 @@
+*
+!*
+!.env
+.git
+node_modules
+dist
+.tanstack
+.wrangler
