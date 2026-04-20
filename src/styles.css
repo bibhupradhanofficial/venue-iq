@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * VenueIQ design system — modern energetic stadium palette.
+ * Deep space bg, electric cyan primary, neon lime accent.
+ * All colors in oklch.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-pitch: var(--pitch);
+  --color-stand: var(--stand);
+  --color-concourse: var(--concourse);
+}
+
+:root {
+  --radius: 1rem;
+  /* Modern energetic Light theme */
+  --background: oklch(0.99 0.005 240);
+  --foreground: oklch(0.2 0.04 250);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.2 0.04 250);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2 0.04 250);
+  --primary: oklch(0.65 0.18 200); /* Vivid Cyan for light */
+  --primary-foreground: oklch(0.99 0.005 240);
+  --secondary: oklch(0.96 0.01 245);
+  --secondary-foreground: oklch(0.2 0.04 250);
+  --muted: oklch(0.94 0.01 250);
+  --muted-foreground: oklch(0.45 0.04 250);
+  --accent: oklch(0.8 0.22 140); /* Vivid Lime for light */
+  --accent-foreground: oklch(0.2 0.04 250);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.99 0.01 240);
+  --border: oklch(0.9 0.02 250);
+  --input: oklch(0.95 0.01 250);
+  --ring: oklch(0.65 0.18 200);
+  --chart-1: oklch(0.65 0.18 200);
+  --chart-2: oklch(0.8 0.22 140);
+  --chart-3: oklch(0.55 0.22 25);
+  --chart-4: oklch(0.72 0.18 145);
+  --chart-5: oklch(0.7 0.2 300);
+  --success: oklch(0.8 0.22 140);
+  --warning: oklch(0.82 0.17 80);
+  --danger: oklch(0.55 0.22 25);
+  --pitch: oklch(0.45 0.12 145);
+  --stand: oklch(0.85 0.04 255);
+  --concourse: oklch(0.92 0.04 255);
+}
+
+/* We still provide a dark toggle if needed, but the user explicitly asked for Light Theme as primary */
+.dark {
+  --background: oklch(0.12 0.015 250);
+  --foreground: oklch(0.98 0.0 0);
+  --card: oklch(0.18 0.03 252);
+  --card-foreground: oklch(0.98 0.0 0);
+  --popover: oklch(0.18 0.03 252);
+  --popover-foreground: oklch(0.98 0.0 0);
+  --primary: oklch(0.75 0.18 200);
+  --primary-foreground: oklch(0.12 0.02 250);
+  --secondary: oklch(0.24 0.04 255);
+  --secondary-foreground: oklch(0.98 0.0 0);
+  --muted: oklch(0.22 0.03 255);
+  --muted-foreground: oklch(0.65 0.03 250);
+  --accent: oklch(0.85 0.22 140);
+  --accent-foreground: oklch(0.12 0.02 250);
+  --destructive: oklch(0.60 0.22 25);
+  --destructive-foreground: oklch(0.98 0.0 0);
+  --border: oklch(0.28 0.04 255);
+  --input: oklch(0.25 0.04 255);
+  --ring: oklch(0.75 0.18 200);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: 'Outfit', sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  html {
+    color-scheme: dark;
+  }
+}
+
+/* Density heatmap helper */
+.density-cell {
+  transition: fill 600ms ease;
+}
+
+/* UI/UX Modernization Utilities */
+.glass {
+  background: color-mix(in srgb, var(--color-card) 70%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid color-mix(in srgb, var(--color-foreground) 5%, transparent);
+  box-shadow: 0 4px 24px 0 color-mix(in srgb, var(--color-foreground) 4%, transparent);
+}
+
+.glass-panel {
+  background: color-mix(in srgb, var(--color-card) 60%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 15%, transparent);
+  box-shadow: 0 8px 32px 0 color-mix(in srgb, var(--color-foreground) 8%, transparent);
+}
+
+.glow-border {
+  position: relative;
+}
+
+.glow-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(to bottom right, color-mix(in srgb, var(--color-primary) 80%, transparent), color-mix(in srgb, var(--color-accent) 80%, transparent));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.glow-text {
+  text-shadow: 0 0 30px color-mix(in srgb, var(--color-primary) 40%, transparent);
+}
+
+.glow-text-accent {
+  text-shadow: 0 0 30px color-mix(in srgb, var(--color-accent) 40%, transparent);
+}
+
+/* Animations */
+@keyframes neonPulse {
+  0%, 100% {
+    box-shadow: 0 0 10px color-mix(in srgb, var(--color-primary) 40%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 20px color-mix(in srgb, var(--color-primary) 80%, transparent), 0 0 30px color-mix(in srgb, var(--color-primary) 60%, transparent);
+  }
+}
+
+.neon-pulse {
+  animation: neonPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
